@@ -143,11 +143,56 @@ List<Department> departmentList = Data.GetDepartments();
 //var results = employeeList.Skip(2);
 //foreach (var item in results)
 //    Console.WriteLine($"{item.Id,-5} {item.FirstName,-20} {item.LastName,20}");
-employeeList.Add(new Employee { Id = 5, FirstName = "Same", LastName = "Davis", AnnualSalary = 1000000 });
-var results = employeeList.TakeWhile(e => e.AnnualSalary > 50000);
-foreach (var item in results)
-    Console.WriteLine($"{item.Id,-5} {item.FirstName,-20} {item.LastName,20} {item.AnnualSalary,-10}");
+//employeeList.Add(new Employee { Id = 5, FirstName = "Same", LastName = "Davis", AnnualSalary = 1000000 });
+//var results = employeeList.TakeWhile(e => e.AnnualSalary > 50000);
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Id,-5} {item.FirstName,-20} {item.LastName,20} {item.AnnualSalary,-10}");
 
+////Conversion Operators
+//List<Employee> results = (from emp in employeeList
+//                         where emp.AnnualSalary > 50000
+//                         select emp).ToList();
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+//Dictionary<int, Employee> dictionary = (from emp in employeeList
+//                                        where emp.AnnualSalary > 50000
+//                                        select emp).ToDictionary<Employee, int>(e => e.Id);
+//foreach (var key in dictionary.Keys)
+//    Console.WriteLine($"Key: {key}, Value: {dictionary[key].FirstName} {dictionary[key].LastName}");
+//Employee[] results = (from emp in employeeList
+//                      where emp.AnnualSalary > 50000
+//                      select emp).ToArray();
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}");
+//var results = from emp in employeeList
+//              let Initials = emp.FirstName.Substring(0, 1).ToUpper() + emp.LastName.Substring(0, 1).ToUpper()
+//              let AnnualSalaryPlusBonus = (emp.IsManager) ? emp.AnnualSalary + (emp.AnnualSalary * 0.04m) : emp.AnnualSalary + (emp.AnnualSalary * 0.02m)
+//              where Initials == "JS" || Initials == "SJ" && AnnualSalaryPlusBonus > 50000
+//              select new
+//              {
+//                  Initials = Initials,
+//                  FullName = emp.FirstName + " " + emp.LastName,
+//                  AnnualSalaryPlusBonus = AnnualSalaryPlusBonus
+//              };
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Initials,-5} {item.FullName,-20} {item.AnnualSalaryPlusBonus,10}");
+//var results = from emp in employeeList
+//              where emp.AnnualSalary > 50000
+//              select emp
+//              into HighEarners
+//              where HighEarners.IsManager == true
+//              select HighEarners;
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
+
+////Projection Operators
+//var results = departmentList.Select(d => d.Employees);
+//foreach(var items in results)
+//    foreach(var item in items)
+//        Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
+//var results = departmentList.SelectMany(d => d.Employees); //.OrderBy(o => o.Id);
+//foreach (var item in results)
+//    Console.WriteLine($"{item.Id,-5} {item.FirstName,-10} {item.LastName,-10} {item.AnnualSalary,10}\t{item.IsManager}");
 
 
 Console.ReadKey();
